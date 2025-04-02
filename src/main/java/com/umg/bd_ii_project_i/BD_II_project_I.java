@@ -8,7 +8,7 @@ public class BD_II_project_I {
     public static void main(String[] args) {
         System.out.println("Hello World!");
 
-        String sql = "SELECT * FROM CURSO";
+        String sql = "SELECT * FROM BANK.ATM";
         SQL.excecute(sql);
         new MainScreen();
     }

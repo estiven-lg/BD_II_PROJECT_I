@@ -19,8 +19,9 @@ public class MainScreen extends JFrame {
         panelPrincipal = new JPanel(cardLayout);
 
         // Agregar pantallas
-        panelPrincipal.add(new ATMScreen(this), "Cajeros");
-        panelPrincipal.add(new CardScreen(this), "Targetas");
+        panelPrincipal.add(new ATMScreen(this), "SELECT_ATM");
+        panelPrincipal.add(new CardScreen(this), "INSERT_CARD");
+        panelPrincipal.add(new SelectActionScreen(this), "SELECT_ACTION");
 
         add(panelPrincipal);
         setVisible(true);

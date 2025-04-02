@@ -58,7 +58,7 @@ public class ATMScreen extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
-        parentScreen.setScreen("Targetas");
+        parentScreen.setScreen("SELECT_ACTION");
     }//GEN-LAST:event_nextButtonActionPerformed
 
 
