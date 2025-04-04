@@ -1,0 +1,61 @@
+package model;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ATM {
+    private int id;
+    private String location;
+    private String city;
+    private String status;
+    
+    // Constructor
+    public ATM(int id, String location, String city, String status) {
+        this.id = id;
+        this.location = location;
+        this.city = city;
+        this.status = status;
+    }
+
+    // Getters
+    public int getId() { return id; }
+    public String getLocation() { return location; }
+    public String getCity() { return city; }
+    public String getStatus() { return status; }
+
+    // Método estático para obtener los ATMs de la base de datos
+    public static List<ATM> getATMs() {
+        List<ATM> atmList = new ArrayList<>();
+        String url = "jdbc:oracle:thin:@localhost:1521:XE"; // Cambia según tu configuración
+        String user = "ATM1"; // Usuario con permisos de lectura
+        String password = "1234#"; // Contraseña del usuario
+
+        String query = "SELECT ATM_ID, LOCATION, CITY, STATUS FROM BANK.ATM";
+
+        try (Connection conn = DriverManager.getConnection(url, user, password);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+
+            while (rs.next()) {
+                ATM atm = new ATM(
+                    rs.getInt("ATM_ID"),
+                    rs.getString("LOCATION"),
+                    rs.getString("CITY"),
+                    rs.getString("STATUS")
+                );
+                atmList.add(atm);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return atmList;
+    }
+}
+
+List<ATM> atms = ATM.getATMs();
+for (ATM atm : atms) {
+    System.out.println("ID: " + atm.getId() + ", Ubicación: " + atm.getLocation() + ", Estado: " + atm.getStatus());
+}
